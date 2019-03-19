@@ -1,23 +1,18 @@
 <?php
 
 namespace Controllers;
-use Slim\Http\Container;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 use PDO;
 use PDOException;
 
-
 class MoviesController
 {   
-    private $request;
-    private $response;
-    private $db;
-
-    public function __construct(Container $container)
+    public function __construct(Request $request, Response $response)
     {
-        $this-> request = $container->get('request');
-        $this-> response = $container->get('response');
-        $this-> db = $container->get('db');
+        $this-> request = $request;
+        $this-> response = $response;
     }
 
     public function index() 
