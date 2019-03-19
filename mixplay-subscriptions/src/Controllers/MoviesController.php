@@ -40,10 +40,13 @@ class MoviesController
             PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]);
 
             //prepared statements
-            $sql = 'select * from movies where id = ? limit 1';
+            $sql = 'select * from movies where id = ? and available = ? limit 1';
 
             $stmt = $db->prepare($sql);
 
+            $stmt->bindValue(1, 10);
+            $stmt->bindValue(2, '1');
+            
             $stmt->execute();
 
             return $this->response->withJson($stmt->fetchAll(PDO::FETCH_ASSOC));
